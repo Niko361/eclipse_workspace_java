@@ -1,0 +1,30 @@
+import java.util.Arrays;
+
+
+public class MazeState 
+{
+	public mazeCellState[][] Maze;
+	public int Cost;
+	
+	//initializes a new MazeState array with dimensions specified
+	public MazeState(int x, int y)
+	{
+		Maze = new mazeCellState[x][y];
+		Arrays.fill(Maze,mazeCellState.Empty);
+		
+	}
+	
+	//adds a wall with top-left corner coordinates and dimensions specified 
+	//need to add bounds checking
+	public void AddWall(int x, int y, int width, int height)
+	{
+		for (int i=x; i < (x+width); i++)
+		{
+			for (int j=y; i < (y+height); i++)
+			{
+				Maze[i][j] = mazeCellState.Wall;
+			}
+		}
+	}
+
+}

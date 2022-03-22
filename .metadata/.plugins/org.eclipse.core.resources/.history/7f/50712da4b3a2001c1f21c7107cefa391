@@ -1,0 +1,19 @@
+
+public class LearnJava 
+{
+
+	public static void main(String[] args) 
+	{
+		
+		Animal a = new Animal();
+		String Dog = a.iAmDog();
+		System.out.println(Dog);
+
+	}
+	
+	public static String addExclamationPoint(String s)
+	{
+		return s + "!";
+	}
+
+}

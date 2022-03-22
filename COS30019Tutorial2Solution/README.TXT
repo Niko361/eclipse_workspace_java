@@ -1,0 +1,2 @@
+- start agent next to nil tile
+- make nil tile the top tile in a column

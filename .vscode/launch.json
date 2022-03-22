@@ -1,0 +1,84 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Assignment1"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main(1)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "COS30019Tutorial1Rewrite"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main(2)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "COS30019Tutorial1Solution"
+        },
+        {
+            "type": "java",
+            "name": "Launch VacuumCleaner",
+            "request": "launch",
+            "mainClass": "VacuumCleaner",
+            "projectName": "COS30019Tutorial2Solution"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main(3)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "COS30019Tutorial3Solution"
+        },
+        {
+            "type": "java",
+            "name": "Launch Hello",
+            "request": "launch",
+            "mainClass": "Hello",
+            "projectName": "HelloWorld2"
+        },
+        {
+            "type": "java",
+            "name": "Launch HelloWorld",
+            "request": "launch",
+            "mainClass": "HelloWorld",
+            "projectName": "HelloWorld"
+        },
+        {
+            "type": "java",
+            "name": "Launch FirstCode",
+            "request": "launch",
+            "mainClass": "FirstCode",
+            "projectName": "JavaTutorial1"
+        },
+        {
+            "type": "java",
+            "name": "Launch JumpDemo",
+            "request": "launch",
+            "mainClass": "JumpDemo",
+            "projectName": "JumpDemo"
+        },
+        {
+            "type": "java",
+            "name": "Launch Main(4)",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Week 3 Programming Solution_Java"
+        }
+    ]
+}

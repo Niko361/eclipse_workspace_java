@@ -1,0 +1,12 @@
+
+public class MazeState 
+{
+	public mazeCellState[][] Maze;
+	public int Cost;
+	
+	public MazeState(int x, int y)
+	{
+		
+	}
+
+}
