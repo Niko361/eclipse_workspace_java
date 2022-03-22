@@ -14,22 +14,21 @@ public class Main {
 			System.exit(1);
 		}
 		
+		ArrayList<MazeState> goalMazes = new ArrayList<MazeState>();
 		
-		MazeState maze = readProblemFile(args[0]);
+		MazeState startingMaze = readProblemFile(args[0], goalMazes);
 
 
 	}
 	
-	private static MazeState readProblemFile(String fileName) 
+	private static MazeState readProblemFile(String fileName, ArrayList<MazeState> goalMazes) 
 	{
-		ArrayList<MazeState> goalMazes = new ArrayList<MazeState>();
-		
 		try
 		{
 			//create file reading objects
 			FileReader reader = new FileReader(fileName);
 			BufferedReader buffReader = new BufferedReader(reader);
-			MazeState result;
+			MazeState emptyMaze;
 			
 			String mazeDimensions = buffReader.readLine();
 			//split the string by a comma
@@ -39,16 +38,17 @@ public class Main {
 			int puzzleSizeY = Integer.parseInt(bothDimensions[0]);
 			int puzzleSizeX = Integer.parseInt(bothDimensions[1]);
 			
-			result = new MazeState(puzzleSizeX, puzzleSizeY);
+			emptyMaze = new MazeState(puzzleSizeX, puzzleSizeY);
 			
 
 			
 			
-			//parse the agent's starting coordinates, they will be added after the goal states have been created.
+			//parse the agent's starting coordinates, they will be added to an empty maze after the walls have been populated
 			String startCoordinates = buffReader.readLine();
 			String [] startCoordinatesArray = startCoordinates.replaceAll("[\\(\\)]","").split(",");
 			int agentStartX = Integer.parseInt(startCoordinatesArray[0]);
 			int agentStartY = Integer.parseInt(startCoordinatesArray[1]);
+	
 			
 			
 			//read the goal coordinates into a 2D array of integers, this will later be used to generate the goal states.
@@ -80,26 +80,28 @@ public class Main {
 				{
 					wallCoords[i] = Integer.parseInt(wallLineCoords[i]);
 				}
-				result.AddWall(wallCoords[0], wallCoords[1], wallCoords[2], wallCoords[3]);	
+				emptyMaze.AddWall(wallCoords[0], wallCoords[1], wallCoords[2], wallCoords[3]);	
 			}
 	    	   
 		        
 			//Create goal state mazes.
 			for(int i = 0; i < goalCoordsArrayList.size(); i++)
 			{
-				MazeState goalMaze = new MazeState(result);
+				MazeState goalMaze = new MazeState(emptyMaze);
 				goalMaze.AddAgent(goalCoordsArrayList.get(i)[0], goalCoordsArrayList.get(i)[1]);
 				goalMazes.add(goalMaze);
 				goalMaze.PrintMaze();
-
 			}
+
+
+			//Add the agent's starting location to an empty maze.
+			MazeState startingMaze = new MazeState(emptyMaze);
+			startingMaze.AddAgent(agentStartX, agentStartY);
+			startingMaze.PrintMaze();
 						
 			buffReader.close();
-
-			result.AddAgent(agentStartX, agentStartY);
-			result.PrintMaze();			
 			
-			return result;
+			return startingMaze;
 		}
 		catch(FileNotFoundException ex)
 		{
@@ -115,8 +117,6 @@ public class Main {
 			System.out.println("If you're accessing this file over a network, try making a local copy.");
 			System.exit(1);
 		}
-		
-		//this code should be unreachable. This statement is simply to satisfy Eclipse.
 		return null;
 	}
 
