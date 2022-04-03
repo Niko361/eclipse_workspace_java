@@ -100,7 +100,7 @@ public class Main {
 			startingMaze.PrintMaze();
 						
 			buffReader.close();
-			
+			 
 			return startingMaze;
 		}
 		catch(FileNotFoundException ex)
