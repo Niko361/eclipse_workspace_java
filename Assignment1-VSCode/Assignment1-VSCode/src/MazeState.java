@@ -82,11 +82,11 @@ public class MazeState
 	}
 
 	//returns true if maze state argument is the same as this maze state, and false otherwise.
-	//compares all variables other than cost because cost isn't relevant to the physical state of the maze.
+	//only compares the location of the agent and location of walls
 	public boolean CompareMazeStates(MazeState in)
 	{
 		if ((this.Maze.length != in.Maze.length) || (this.Maze[0].length != in.Maze[0].length) 
-		|| (this.agentLocationXY[0] != in.agentLocationXY[0] ||	this.agentLocationXY[0] != in.agentLocationXY[1]))
+		|| (this.agentLocationXY[0] != in.agentLocationXY[0]) ||	(this.agentLocationXY[1] != in.agentLocationXY[1]))
 		{
 			return false;
 		}
@@ -125,7 +125,7 @@ public class MazeState
 
 		if(agentLocationXY[0] < (Maze.length-1))
 		{
-			if((Maze[agentLocationXY[0]+1][agentLocationXY[1]]) == mazeCellState.Empty);
+			if((Maze[agentLocationXY[0]+1][agentLocationXY[1]]) == mazeCellState.Empty)
 			{
 				result.add(direction.Right);
 			}
