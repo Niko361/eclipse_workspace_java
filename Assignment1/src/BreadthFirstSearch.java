@@ -5,7 +5,7 @@ public class BreadthFirstSearch extends SearchMethod
 {
     public BreadthFirstSearch()
     {
-        name = "BFS"
+        name = "BFS";
         FrontierNodes = new LinkedList<MazeState>();
         SearchedNodes = new LinkedList<MazeState>();
     }
@@ -19,7 +19,7 @@ public class BreadthFirstSearch extends SearchMethod
 
     private boolean isSolved(MazeState currentMaze)
     {
-        for(MazeState goalMaze .. goalMazes)
+        for(MazeState goalMaze: goalMazes)
         {
             if (currentMaze.CompareMazeStates(goalMaze))
             {
