@@ -6,6 +6,7 @@ public class MazeState
 	private mazeCellState[][] Maze;
 	public int Cost;
 	private int[] agentLocationXY = new int[2];
+	private ArrayList<direction> directionList;
 	
 	//initializes a new MazeState array with dimensions specified
 	public MazeState(int x, int y)
@@ -30,6 +31,28 @@ public class MazeState
 			for (int j=0; j < in.Maze.length; j++)
 			{							
 				this.Maze[j][i]=in.Maze[j][i];
+			}
+		}
+	}
+
+	public void PrintDirections()
+	{
+		for(direction dir: directionList)
+		{
+			switch(dir)
+			{
+				case Up:
+					System.out.print(" up;");
+					break;
+				case Left:
+					System.out.print(" left;");
+					break;
+				case Down:
+					System.out.print(" down;");
+					break;
+				case Right:
+					System.out.print(" right;");
+					break;
 			}
 		}
 	}
@@ -73,8 +96,6 @@ public class MazeState
 				}
 			}
 		}
-
-
 		return true;
 	}
 
@@ -90,14 +111,55 @@ public class MazeState
 		{
 			result.add(direction.Left);
 		}
-		if((agentLocationXY[1] < (Maze.length-1)) && ((this.Maze[agentLocationXY[0]][agentLocationXY[1]+1]) == mazeCellState.Empty))
+		if((agentLocationXY[1] < (Maze.length-1)) && ((this.Maze[agentLocationXY[0]][agentLocationXY[1]-1]) == mazeCellState.Empty))
 		{
 			result.add(direction.Right);
 		}
 
-		if((agentLocationXY[0] < (Maze.length-1)) && ((this.Maze[agentLocationXY[0]+1][agentLocationXY[1]]) == mazeCellState.Empty))
+		if((agentLocationXY[0] < (Maze.length-1)) && ((this.Maze[agentLocationXY[0]-1][agentLocationXY[1]]) == mazeCellState.Empty))
 		{
 			result.add(direction.Right);
+		}
+
+		return result;
+	}
+
+	public MazeState MoveAgent(direction dir)
+	{
+		MazeState result = new MazeState(this);
+
+		switch(dir)
+		{
+			case Up:
+				result.agentLocationXY[1]--;
+				result.directionList.add(dir);
+				break;
+			case Left:
+				result.agentLocationXY[0]--;
+				result.directionList.add(dir);
+				break;
+			case Down:
+				result.agentLocationXY[1]++;
+				result.directionList.add(dir);
+				break;
+			case Right:
+				result.agentLocationXY[0]++;
+				result.directionList.add(dir);
+				break;
+		}
+
+		return result;
+	}
+
+	public ArrayList<MazeState> getPossibleMoveStates()
+	{
+		ArrayList<MazeState> result = new ArrayList<MazeState>();
+
+		ArrayList<direction> possibleDirections = getPossibleMoves();
+
+		for(direction dir: possibleDirections)
+		{
+			result.add(this.MoveAgent(dir));
 		}
 
 		return result;

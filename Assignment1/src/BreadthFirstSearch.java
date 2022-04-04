@@ -1,4 +1,4 @@
-import java.util.LinkedList;
+import java.util.*;
 
 
 public class BreadthFirstSearch extends SearchMethod
@@ -7,19 +7,20 @@ public class BreadthFirstSearch extends SearchMethod
     {
         name = "BFS";
         FrontierNodes = new LinkedList<MazeState>();
-        SearchedNodes = new LinkedList<MazeState>();
+        SearchedNodes = new ArrayList<MazeState>();
     }
 
     private MazeState popFrontier()
     {
         MazeState poppedMazeState = FrontierNodes.getFirst();
+        FrontierNodes.removeFirst();
         SearchedNodes.add(poppedMazeState);
         return poppedMazeState;
     }
 
     private boolean isSolved(MazeState currentMaze)
     {
-        for(MazeState goalMaze: goalMazes)
+        for(MazeState goalMaze: GoalNodes)
         {
             if (currentMaze.CompareMazeStates(goalMaze))
             {
@@ -30,15 +31,15 @@ public class BreadthFirstSearch extends SearchMethod
         return false;
     }
 
-    public direction[] Solve(startingMaze MazeState, ArrayList<MazeState> goalMazes)
+    public direction[] Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
     {
-        FrontierNodes.Add(startingMaze);
+        FrontierNodes.add(startingMaze);
 
-        while(Frontier.size() > 0))
+        while(FrontierNodes.size() > 0)
         {
             MazeState currentNode = popFrontier();
 
-            if(isSolved(currentNode));
+            if(isSolved(currentNode))
             {
                 //insert direction solver here
             }
@@ -47,5 +48,8 @@ public class BreadthFirstSearch extends SearchMethod
                 
             }
         }
+
+        //return null if direction not found
+        return null;
     }
 }
