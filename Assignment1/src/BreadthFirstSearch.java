@@ -18,22 +18,13 @@ public class BreadthFirstSearch extends SearchMethod
         return poppedMazeState;
     }
 
-    private boolean isSolved(MazeState currentMaze)
-    {
-        for(MazeState goalMaze: GoalNodes)
-        {
-            if (currentMaze.CompareMazeStates(goalMaze))
-            {
-                return true;
-            }
-        }
 
-        return false;
-    }
 
-    public direction[] Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
+    public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
     {
         FrontierNodes.add(startingMaze);
+
+        GoalNodes = goalMazes;
 
         while(FrontierNodes.size() > 0)
         {
@@ -41,15 +32,13 @@ public class BreadthFirstSearch extends SearchMethod
 
             if(isSolved(currentNode))
             {
-                //insert direction solver here
+                currentNode.PrintDirections();
             }
             else
             {
-                
+                ArrayList<MazeState> frontierAdditions = currentNode.getPossibleMoveStates();
+                AddToFrontier(frontierAdditions);
             }
         }
-
-        //return null if direction not found
-        return null;
     }
 }

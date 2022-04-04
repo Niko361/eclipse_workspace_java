@@ -4,9 +4,9 @@ import java.util.ArrayList;
 public class MazeState 
 {
 	private mazeCellState[][] Maze;
-	public int Cost;
+	public int Cost = 0;
 	private int[] agentLocationXY = new int[2];
-	private ArrayList<direction> directionList;
+	private ArrayList<direction> directionList = new ArrayList<direction>();
 	
 	//initializes a new MazeState array with dimensions specified
 	public MazeState(int x, int y)
@@ -103,24 +103,37 @@ public class MazeState
 	{
 		ArrayList<direction> result = new ArrayList<direction>();
 
-		if((agentLocationXY[1] > 0) && ((this.Maze[agentLocationXY[0]][agentLocationXY[1]-1]) == mazeCellState.Empty))
+		if(agentLocationXY[1] > 0)
 		{
-			result.add(direction.Up);
+			if((this.Maze[agentLocationXY[0]][agentLocationXY[1]-1]) == mazeCellState.Empty)
+			{
+				result.add(direction.Up);
+			}
 		}
-		if((agentLocationXY[0] > 0) && ((this.Maze[agentLocationXY[0]-1][agentLocationXY[1]]) == mazeCellState.Empty))
+		if(agentLocationXY[0] > 0) 
 		{
-			result.add(direction.Left);
-		}
-		if((agentLocationXY[1] < (Maze.length-1)) && ((this.Maze[agentLocationXY[0]][agentLocationXY[1]-1]) == mazeCellState.Empty))
-		{
-			result.add(direction.Right);
-		}
-
-		if((agentLocationXY[0] < (Maze.length-1)) && ((this.Maze[agentLocationXY[0]-1][agentLocationXY[1]]) == mazeCellState.Empty))
-		{
-			result.add(direction.Right);
+			if((this.Maze[agentLocationXY[0]-1][agentLocationXY[1]]) == mazeCellState.Empty)
+			{
+				result.add(direction.Left);
+			}
 		}
 
+		if(agentLocationXY[1] < (Maze.length-1))
+		{
+			if((this.Maze[agentLocationXY[0]][agentLocationXY[1]+1]) == mazeCellState.Empty);
+			{
+				result.add(direction.Right);
+			}
+		}
+			
+
+		if(agentLocationXY[0] < (Maze.length-1))
+		{
+			if((this.Maze[agentLocationXY[0]+1][agentLocationXY[1]]) == mazeCellState.Empty)
+			{
+				result.add(direction.Down);
+			}
+		}	
 		return result;
 	}
 
@@ -207,6 +220,8 @@ public class MazeState
 		{
 			System.out.print("-");
 		}
+
+		System.out.println();
 		
 		
 		

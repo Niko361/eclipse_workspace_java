@@ -18,6 +18,11 @@ public class Main {
 		
 		MazeState startingMaze = readProblemFile(args[0], goalMazes);
 
+		SearchMethod BFS = new BreadthFirstSearch();
+
+		BFS.Solve(startingMaze, goalMazes);
+
+
 
 	}
 	
