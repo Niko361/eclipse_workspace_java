@@ -14,8 +14,10 @@ public class Main {
 		MazeState startingMaze = readProblemFile(args[0], goalMazes);
 
 		SearchMethod BFS = new BreadthFirstSearch();
+		SearchMethod DFS = new DepthFirstSearch();
 
 		BFS.Solve(startingMaze, goalMazes);
+		DFS.Solve(startingMaze, goalMazes);
 
 	}
 
