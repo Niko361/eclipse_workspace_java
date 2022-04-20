@@ -9,6 +9,7 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
+            "args": "RobotNav-test.txt sdfsd"
             
         },
         {
