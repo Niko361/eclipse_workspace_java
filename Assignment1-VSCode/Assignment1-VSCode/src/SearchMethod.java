@@ -18,6 +18,8 @@ public abstract class SearchMethod
     //used by every search method to check whether the goal state has been reached.
     protected boolean isSolved(MazeState currentMaze)
     {
+        currentMaze.PrintDirections();
+        
         for(MazeState goalMaze: GoalNodes)
         {
             if (currentMaze.CompareMazeStates(goalMaze))

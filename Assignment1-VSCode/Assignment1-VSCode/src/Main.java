@@ -15,9 +15,11 @@ public class Main {
 
 		SearchMethod BFS = new BreadthFirstSearch();
 		SearchMethod DFS = new DepthFirstSearch();
+		SearchMethod GBFS = new GreedyBestFirstSearch();
 
 		BFS.Solve(startingMaze, goalMazes);
 		DFS.Solve(startingMaze, goalMazes);
+		GBFS.Solve(startingMaze, goalMazes);
 
 	}
 

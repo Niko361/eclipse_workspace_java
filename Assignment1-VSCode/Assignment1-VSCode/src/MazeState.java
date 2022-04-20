@@ -1,9 +1,12 @@
-import java.util.ArrayList;
+import java.util.*;
 
 public class MazeState 
 {
 	private static mazeCellState[][] Maze;
-	public int Cost = 0;
+	public int GCost = 0;
+	public int HCost;
+	public int FCost;
+
 	private int[] agentLocationXY = new int[2];
 	private ArrayList<direction> directionList = new ArrayList<direction>();
 	
@@ -25,7 +28,7 @@ public class MazeState
 	{
 		this.agentLocationXY[0] = in.agentLocationXY[0];
 		this.agentLocationXY[1] = in.agentLocationXY[1];
-		this.Cost = in.Cost;
+		this.GCost = in.GCost;
 
 		for(direction dir: in.directionList)
 		{
@@ -149,7 +152,7 @@ public class MazeState
 		}
 
 		result.directionList.add(dir);
-		result.Cost++;
+		result.GCost++;
 
 		return result;
 	}
@@ -218,6 +221,23 @@ public class MazeState
 		}
 
 		System.out.println();
+	}
+
+	public int GetManhattanDistance(MazeState in)
+	{
+		return Math.abs(in.agentLocationXY[0] - this.agentLocationXY[0]) + Math.abs(in.agentLocationXY[1] - this.agentLocationXY[1]);
+	}
+
+	public int getShortestManhattanDistance(ArrayList<MazeState> inputNodes)
+	{
+		ArrayList<Integer> distances = new ArrayList<Integer>();
+		for(MazeState in: inputNodes)
+		{
+			distances.add(this.GetManhattanDistance(in));
+		}
+
+		Collections.sort(distances);
+		return distances.get(0);	
 	}
 
 }
