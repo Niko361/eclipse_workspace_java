@@ -4,8 +4,8 @@ public class MazeState
 {
 	private static mazeCellState[][] Maze;
 	public int GCost = 0;
-	public int HCost;
-	public int FCost;
+	public double HCost;
+	public double FCost;
 
 	private int[] agentLocationXY = new int[2];
 	public LinkedList<direction> directionList = new LinkedList<direction>();
