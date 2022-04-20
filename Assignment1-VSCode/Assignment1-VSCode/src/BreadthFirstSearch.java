@@ -32,7 +32,7 @@ public class BreadthFirstSearch extends SearchMethod
 
             if(isSolved(currentNode))
             {
-                System.out.println("Solution found!");
+                System.out.println("\n" + name + " Solution found!\n");
                 currentNode.PrintDirections();
                 return;
             }

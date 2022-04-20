@@ -1,11 +1,11 @@
 import java.util.*;
 
 
-public class GreedyBestFirstSearch extends SearchMethod
+public class AStar extends SearchMethod
 {
-    public GreedyBestFirstSearch()
+    public AStar()
     {
-        name = "GBFS";
+        name = "A*";
         FrontierNodes = new LinkedList<MazeState>();
         SearchedNodes = new ArrayList<MazeState>();
     }
@@ -47,6 +47,7 @@ public class GreedyBestFirstSearch extends SearchMethod
 
             if(isSolved(currentNode))
             {
+                
                 System.out.println("\n" + name + " Solution found!\n");
                 currentNode.PrintDirections();
                 return;
@@ -55,12 +56,13 @@ public class GreedyBestFirstSearch extends SearchMethod
             {
                 ArrayList<MazeState> frontierAdditions = currentNode.getPossibleMoveStates();
 
-                //Creates a new ArrayList of possible moves to add to the frontier, except with their Heuristic functions evaluated (shortest Manhattan distance to a goal state)
+                //Creates a new ArrayList of possible moves to add to the frontier, except with their Heuristic functions evaluated (shortest Manhattan distance to a goal state).
+                //The FCost function of A* is equal to the Heuristic cost plus the GCost (total moves so far)
                 ArrayList<MazeState> frontierAdditionsWithHeuristicCost = new ArrayList<MazeState>();
                 for(MazeState curr : frontierAdditions)
                 {
                     curr.HCost = curr.getShortestManhattanDistance(GoalNodes);
-                    curr.FCost = curr.HCost;
+                    curr.FCost = curr.HCost+curr.GCost;
                     frontierAdditionsWithHeuristicCost.add(curr);
                 }
 

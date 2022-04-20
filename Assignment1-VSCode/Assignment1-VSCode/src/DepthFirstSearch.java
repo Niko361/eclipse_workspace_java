@@ -32,7 +32,7 @@ public class DepthFirstSearch extends SearchMethod
 
             if(isSolved(currentNode))
             {
-                System.out.println("\nSolution found!");
+                System.out.println("\n" + name + " Solution found!\n");
                 currentNode.PrintDirections();
                 return;
             }
