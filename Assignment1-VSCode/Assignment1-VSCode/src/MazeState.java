@@ -8,7 +8,7 @@ public class MazeState
 	public int FCost;
 
 	private int[] agentLocationXY = new int[2];
-	private ArrayList<direction> directionList = new ArrayList<direction>();
+	public LinkedList<direction> directionList = new LinkedList<direction>();
 	
 	//initializes a new MazeState array with dimensions specified
 	public MazeState(int x, int y)

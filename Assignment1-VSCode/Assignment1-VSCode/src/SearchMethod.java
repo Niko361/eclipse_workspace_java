@@ -65,13 +65,23 @@ public abstract class SearchMethod
             
             for(int i = 1; i < FrontierNodes.size(); i++)
             {         
-                if(FrontierNodes.get(i).FCost < lowestFCost)
+                if((FrontierNodes.get(i).FCost < lowestFCost))
                 {
                     lowestIndex = i;
                     lowestFCost = FrontierNodes.get(i).FCost;
                 }
+                //if the FCost of this frontier node is the same as the previous lowest found FCost, this then checks the value of the Enums, with the lowest value Enum being picked as the next frontier node.
+                //this is to comply with the problem requriements.
+                else if (FrontierNodes.get(i).FCost == lowestFCost)
+                {
+                    if((FrontierNodes.get(lowestIndex).directionList.getLast().compareTo(FrontierNodes.get(i).directionList.getLast())) > 0)
+                    {
+                        lowestIndex = i;
+                    }
+                }
             }
-            
+
+
             MazeState poppedMazeState = FrontierNodes.get(lowestIndex);
             FrontierNodes.remove(lowestIndex);
             SearchedNodes.add(poppedMazeState);
