@@ -56,6 +56,27 @@ public abstract class SearchMethod
             }
         }
     }
+
+        //finds the smallest node in the frontier with the smallest FCost, and pops it out of the frontier. This is used by all heuristic search methods.
+        protected MazeState popSmallestFCostFromFrontier()
+        {
+            int lowestFCost = FrontierNodes.getFirst().FCost;
+            int lowestIndex = 0;
+            
+            for(int i = 1; i < FrontierNodes.size(); i++)
+            {         
+                if(FrontierNodes.get(i).FCost < lowestFCost)
+                {
+                    lowestIndex = i;
+                    lowestFCost = FrontierNodes.get(i).FCost;
+                }
+            }
+            
+            MazeState poppedMazeState = FrontierNodes.get(lowestIndex);
+            FrontierNodes.remove(lowestIndex);
+            SearchedNodes.add(poppedMazeState);
+            return poppedMazeState;
+        }
     
 }
 

@@ -10,30 +10,6 @@ public class GreedyBestFirstSearch extends SearchMethod
         SearchedNodes = new ArrayList<MazeState>();
     }
 
-    
-    
-    //finds the smallest node in the frontier with the smallest FCost, and pops it out of the frontier.
-    private MazeState popSmallestFCostFromFrontier()
-    {
-        int lowestFCost = FrontierNodes.getFirst().FCost;
-        int lowestIndex = 0;
-        
-        for(int i = 1; i > FrontierNodes.size(); i++)
-        {
-            if((FrontierNodes.get(i).FCost) < (lowestFCost))
-            {
-                lowestIndex = i;
-                lowestFCost = FrontierNodes.get(i).FCost;
-            }
-        }
-        
-        MazeState poppedMazeState = FrontierNodes.get(lowestIndex);
-        FrontierNodes.remove(lowestIndex);
-        SearchedNodes.add(poppedMazeState);
-        return poppedMazeState;
-    }
-
-
 
     public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
     {
