@@ -41,7 +41,7 @@ public abstract class SearchMethod
                     dupe = true;
                 }
             }
-            for(MazeState searched: SearchedNodes)
+            for(MazeState searched: SearchedNodes) 
             {
                 if(searched.CompareMazeStates(addition))
                 {

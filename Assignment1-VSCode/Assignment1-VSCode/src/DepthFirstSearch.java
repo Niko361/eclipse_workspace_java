@@ -39,6 +39,10 @@ public class DepthFirstSearch extends SearchMethod
             else
             {
                 ArrayList<MazeState> frontierAdditions = currentNode.getPossibleMoveStates();
+                
+                //Reverses the order of the frontier additions Arraylist in order to maintain the order of the moved specified in the assignment specifications 
+                //(because DFS uses a LIFO queue instead of a FIFO one, move instructions are popped in the oposite order from which they are added to the frontier)
+                Collections.reverse(frontierAdditions);
                 AddToFrontier(frontierAdditions);
             }
         }

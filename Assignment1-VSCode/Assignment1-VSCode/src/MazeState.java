@@ -35,6 +35,8 @@ public class MazeState
 
 	public void PrintDirections()
 	{
+		System.out.println();
+		
 		for(direction dir: directionList)
 		{
 			switch(dir)
@@ -104,6 +106,14 @@ public class MazeState
 			}
 		}
 
+		if(agentLocationXY[1] < (Maze[0].length-1))
+		{
+			if((Maze[agentLocationXY[0]][agentLocationXY[1]+1]) == mazeCellState.Empty)
+			{
+				result.add(direction.Down);
+			}
+		}	
+
 		if(agentLocationXY[0] < (Maze.length-1))
 		{
 			if((Maze[agentLocationXY[0]+1][agentLocationXY[1]]) == mazeCellState.Empty)
@@ -113,13 +123,7 @@ public class MazeState
 		}
 			
 
-		if(agentLocationXY[1] < (Maze[0].length-1))
-		{
-			if((Maze[agentLocationXY[0]][agentLocationXY[1]+1]) == mazeCellState.Empty)
-			{
-				result.add(direction.Down);
-			}
-		}	
+
 		return result;
 	}
 
