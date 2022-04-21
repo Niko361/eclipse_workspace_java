@@ -90,6 +90,7 @@ public class Main {
 	{
 		searchMethods.add(new BreadthFirstSearch());
 		searchMethods.add(new DepthFirstSearch());
+		searchMethods.add(new IterativeDeepeningSearch());
 		searchMethods.add(new GreedyBestFirstSearch());
 		searchMethods.add(new AStar());
 		searchMethods.add(new WeightedAStar());
