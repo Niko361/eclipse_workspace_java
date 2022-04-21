@@ -38,8 +38,6 @@ public class MazeState
 
 	public void PrintDirections()
 	{
-		System.out.println();
-		
 		for(direction dir: directionList)
 		{
 			switch(dir)
@@ -58,6 +56,7 @@ public class MazeState
 					break;
 			}
 		}
+		System.out.println();
 	}
 	
 	//adds a wall with top-left corner coordinates and dimensions specified 

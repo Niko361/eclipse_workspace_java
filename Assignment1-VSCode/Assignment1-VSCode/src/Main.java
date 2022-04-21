@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Main {
 
+	public static ArrayList<SearchMethod> searchMethods = new ArrayList<SearchMethod>();
 	public static void main(String[] args) 
 	{
 		if (args.length < 2) {
@@ -10,22 +11,83 @@ public class Main {
 			System.exit(1);
 		}
 
+		String fileName = args[0];
+		String methodName = args[1];
+
+		InitMethods();
+
 		ArrayList<MazeState> goalMazes = new ArrayList<MazeState>();
 
-		MazeState startingMaze = readProblemFile(args[0], goalMazes);
 
-		SearchMethod BFS = new BreadthFirstSearch();
-		SearchMethod DFS = new DepthFirstSearch();
-		SearchMethod GBFS = new GreedyBestFirstSearch();
-		SearchMethod AStar = new AStar();
-		SearchMethod WAStar = new WeightedAStar();
+		MazeState startingMaze = readProblemFile(fileName, goalMazes);
+		SearchMethod thisMethod = null;
 
-		BFS.Solve(startingMaze, goalMazes, args[0]);
-		DFS.Solve(startingMaze, goalMazes, args[0]);
-		GBFS.Solve(startingMaze, goalMazes, args[0]);
-		AStar.Solve(startingMaze, goalMazes, args[0]);
-		WAStar.Solve(startingMaze, goalMazes, args[0]);
+		
+		//determine which method the user wants to use to solve the puzzles
+		for(SearchMethod method : searchMethods)
+		{
+			//do they want this one?
+			if(method.name.compareTo(methodName) == 0)
+			{
+				//yes, use this method.
+				thisMethod = method;
+			}
+		}
+		
+		//Has the method been implemented?
+		if(thisMethod == null)
+		{
+			//No, give an error
+			System.out.println("Search method identified by " + methodName + " not implemented. Methods are case sensitive.");
+			System.exit(1);
+		}
 
+		Solution solution = thisMethod.Solve(startingMaze, goalMazes, args[0]);
+
+		if(solution != null)
+		{
+			PrintSolution(fileName, methodName, solution);
+		}
+		else
+		{
+			System.out.println("No Solution Found.");
+			System.exit(1);
+		}
+	}
+
+	public static void PrintSolution(String fileName, String methodName, Solution solution)
+	{
+		System.out.println(fileName + " " + methodName + " " + solution.numberofNodes);
+		for(direction dir: solution.directionList)
+		{
+			switch(dir)
+			{
+				case Up:
+					System.out.print(" up;");
+					break;
+				case Left:
+					System.out.print(" left;");
+					break;
+				case Down:
+					System.out.print(" down;");
+					break;
+				case Right:
+					System.out.print(" right;");
+					break;
+			}
+		}
+		System.out.println();
+	}
+
+
+
+	public static void InitMethods()
+	{
+		searchMethods.add(new BreadthFirstSearch());
+		searchMethods.add(new DepthFirstSearch());
+		searchMethods.add(new GreedyBestFirstSearch());
+		searchMethods.add(new AStar());
+		searchMethods.add(new WeightedAStar());
 	}
 
 	private static MazeState readProblemFile(String fileName, ArrayList<MazeState> goalMazes) 
@@ -87,13 +149,11 @@ public class Main {
 				MazeState goalMaze = new MazeState(emptyMaze);
 				goalMaze.AddAgent(goalCoordsArrayList.get(i)[0], goalCoordsArrayList.get(i)[1]);
 				goalMazes.add(goalMaze);
-				goalMaze.PrintMaze();
 			}
 
 			// Add the agent's starting location to an empty maze.
 			MazeState startingMaze = new MazeState(emptyMaze);
 			startingMaze.AddAgent(agentStartX, agentStartY);
-			startingMaze.PrintMaze();
 
 			buffReader.close();
 

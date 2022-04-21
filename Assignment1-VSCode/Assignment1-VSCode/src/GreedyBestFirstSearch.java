@@ -11,12 +11,10 @@ public class GreedyBestFirstSearch extends SearchMethod
     }
 
 
-    public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
+    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
     {
         this.fileName = fileName;
-        
         FrontierNodes.add(startingMaze);
-
         GoalNodes = goalMazes;
 
         while(FrontierNodes.size() > 0)
@@ -25,9 +23,7 @@ public class GreedyBestFirstSearch extends SearchMethod
 
             if(isSolved(currentNode))
             {
-                System.out.println("\n" + name + " Solution found!\n");
-                currentNode.PrintDirections();
-                return;
+                return new Solution(SearchedNodes.size(), currentNode.directionList);
             }
             else
             {
@@ -45,6 +41,6 @@ public class GreedyBestFirstSearch extends SearchMethod
                 AddToFrontier(frontierAdditionsWithHeuristicCost);
             }
         }
-        System.out.println("no solution found");
+        return null;
     }
 }

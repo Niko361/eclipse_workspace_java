@@ -15,15 +15,13 @@ public abstract class SearchMethod
 
     protected  ArrayList<MazeState> GoalNodes;
 
-    protected MazeState currentNode;
+    public MazeState currentNode;
 
-    public abstract void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName);
+    public abstract Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName);
 
     //used by every search method to check whether the goal state has been reached.
     protected boolean isSolved(MazeState currentMaze)
-    {
-        currentMaze.PrintDirections();
-        
+    {   
         for(MazeState goalMaze: GoalNodes)
         {
             if (currentMaze.CompareMazeStates(goalMaze))
@@ -61,6 +59,15 @@ public abstract class SearchMethod
         }
     }
 
+    //pops the last added MazeState in a frontier, implementing a LIFO queue. This is used by DFS and Iterative Deepening DFS.
+    protected MazeState popLastFromFrontier()
+    {
+        MazeState poppedMazeState = FrontierNodes.getLast();
+        FrontierNodes.removeLast();
+        SearchedNodes.add(poppedMazeState);
+        return poppedMazeState;
+    }
+
     //finds the smallest node in the frontier with the smallest FCost, and pops it out of the frontier. This is used by all heuristic search methods.
     protected MazeState popSmallestFCostFromFrontier()
     {
@@ -85,19 +92,10 @@ public abstract class SearchMethod
             }
         }
 
-
         MazeState poppedMazeState = FrontierNodes.get(lowestIndex);
         FrontierNodes.remove(lowestIndex);
         SearchedNodes.add(poppedMazeState);
         return poppedMazeState;
-    }
-
-    protected void SolutionFound()
-    {
-        System.out.print(fileName + " " + name + " " + SearchedNodes.size()+1);
-        System.out.println("\n" + name + " Solution found!\n");
-        currentNode.PrintDirections();
-
     }
     
 }

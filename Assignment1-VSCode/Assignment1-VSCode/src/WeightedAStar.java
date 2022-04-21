@@ -11,7 +11,7 @@ public class WeightedAStar extends SearchMethod
     }
 
 
-    public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
+    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
     {
         FrontierNodes.add(startingMaze);
 
@@ -21,14 +21,12 @@ public class WeightedAStar extends SearchMethod
 
         while(FrontierNodes.size() > 0)
         {
-            currentNode = popSmallestFCostFromFrontier();
+            MazeState currentNode = popSmallestFCostFromFrontier();
 
             if(isSolved(currentNode))
             {
                 
-                System.out.println("\n" + name + " Solution found!\n");
-                currentNode.PrintDirections();
-                return;
+                return new Solution(SearchedNodes.size(), currentNode.directionList);
             }
             else
             {
@@ -47,6 +45,6 @@ public class WeightedAStar extends SearchMethod
                 AddToFrontier(frontierAdditionsWithHeuristicCost);
             }
         }
-        System.out.println("no solution found");
+        return null;
     }
 }

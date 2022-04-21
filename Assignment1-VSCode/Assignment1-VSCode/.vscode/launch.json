@@ -9,7 +9,7 @@
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}",
-            "args": "RobotNav-test.txt sdfsd"
+            "args": "RobotNav-test.txt DFS"
             
         },
         {
@@ -18,7 +18,7 @@
             "request": "launch",
             "mainClass": "Main",
             "projectName": "Assignment1-VSCode_dcc9a856",
-            "args": "RobotNav-test.txt sdfsd"
+            "args": "RobotNav-test.txt BFS"
         }
     ]
 }

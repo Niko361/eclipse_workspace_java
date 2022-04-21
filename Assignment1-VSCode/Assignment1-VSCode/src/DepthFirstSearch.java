@@ -10,22 +10,10 @@ public class DepthFirstSearch extends SearchMethod
         SearchedNodes = new ArrayList<MazeState>();
     }
 
-    private MazeState popLastFromFrontier()
-    {
-        MazeState poppedMazeState = FrontierNodes.getLast();
-        FrontierNodes.removeLast();
-        SearchedNodes.add(poppedMazeState);
-        return poppedMazeState;
-    }
-
-
-
-    public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
+    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
     {
         FrontierNodes.add(startingMaze);
-
         this.fileName = fileName;
-
         GoalNodes = goalMazes;
 
         while(FrontierNodes.size() > 0)
@@ -34,9 +22,7 @@ public class DepthFirstSearch extends SearchMethod
 
             if(isSolved(currentNode))
             {
-                System.out.println("\n" + name + " Solution found!\n");
-                currentNode.PrintDirections();
-                return;
+                return new Solution(SearchedNodes.size(), currentNode.directionList);
             }
             else
             {
@@ -48,6 +34,6 @@ public class DepthFirstSearch extends SearchMethod
                 AddToFrontier(frontierAdditions);
             }
         }
-        System.out.println("no solution found");
+        return null;
     }
 }

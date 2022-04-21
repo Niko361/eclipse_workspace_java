@@ -10,7 +10,7 @@ public class BreadthFirstSearch extends SearchMethod
         SearchedNodes = new ArrayList<MazeState>();
     }
 
-    private MazeState popFrontier()
+    private MazeState popFirstFromFrontier()
     {
         MazeState poppedMazeState = FrontierNodes.getFirst();
         FrontierNodes.removeFirst();
@@ -20,23 +20,19 @@ public class BreadthFirstSearch extends SearchMethod
 
 
 
-    public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
+    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
     {
         FrontierNodes.add(startingMaze);
-
         this.fileName = fileName;
-
         GoalNodes = goalMazes;
 
         while(FrontierNodes.size() > 0)
         {
-            MazeState currentNode = popFrontier();
+            MazeState currentNode = popFirstFromFrontier();
 
             if(isSolved(currentNode))
             {
-                System.out.println("\n" + name + " Solution found!\n");
-                currentNode.PrintDirections();
-                return;
+                return new Solution(SearchedNodes.size(), currentNode.directionList);
             }
             else
             {
@@ -44,6 +40,6 @@ public class BreadthFirstSearch extends SearchMethod
                 AddToFrontier(frontierAdditions);
             }
         }
-        System.out.println("no solution found");
+        return null;
     }
 }
