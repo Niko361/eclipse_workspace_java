@@ -2,7 +2,7 @@ import java.util.*;
 
 public class MazeState 
 {
-	private static mazeCellState[][] Maze;
+	public static mazeCellState[][] Maze;
 	public int GCost = 0;
 	public double HCost;
 	public double FCost;
