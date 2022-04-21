@@ -11,8 +11,10 @@ public class GreedyBestFirstSearch extends SearchMethod
     }
 
 
-    public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
+    public void Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
     {
+        this.fileName = fileName;
+        
         FrontierNodes.add(startingMaze);
 
         GoalNodes = goalMazes;

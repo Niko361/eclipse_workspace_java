@@ -3,7 +3,8 @@ import java.util.ArrayList;
 
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) 
+	{
 		if (args.length < 2) {
 			System.out.println("Usage: mazeSolver <filename> <search-method>.");
 			System.exit(1);
@@ -19,15 +20,16 @@ public class Main {
 		SearchMethod AStar = new AStar();
 		SearchMethod WAStar = new WeightedAStar();
 
-		BFS.Solve(startingMaze, goalMazes);
-		DFS.Solve(startingMaze, goalMazes);
-		GBFS.Solve(startingMaze, goalMazes);
-		AStar.Solve(startingMaze, goalMazes);
-		WAStar.Solve(startingMaze, goalMazes);
+		BFS.Solve(startingMaze, goalMazes, args[0]);
+		DFS.Solve(startingMaze, goalMazes, args[0]);
+		GBFS.Solve(startingMaze, goalMazes, args[0]);
+		AStar.Solve(startingMaze, goalMazes, args[0]);
+		WAStar.Solve(startingMaze, goalMazes, args[0]);
 
 	}
 
-	private static MazeState readProblemFile(String fileName, ArrayList<MazeState> goalMazes) {
+	private static MazeState readProblemFile(String fileName, ArrayList<MazeState> goalMazes) 
+	{
 		try {
 			// create file reading objects
 			FileReader reader = new FileReader(fileName);
