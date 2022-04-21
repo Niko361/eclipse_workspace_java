@@ -19,7 +19,7 @@ public class WeightedAStar extends SearchMethod
 
         while(FrontierNodes.size() > 0)
         {
-            MazeState currentNode = popSmallestFCostFromFrontier();
+            currentNode = popSmallestFCostFromFrontier();
 
             if(isSolved(currentNode))
             {
