@@ -10,10 +10,9 @@ public class DepthFirstSearch extends SearchMethod
         SearchedNodes = new ArrayList<MazeState>();
     }
 
-    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
+    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
     {
-        FrontierNodes.add(startingMaze);
-        this.fileName = fileName;
+        FrontierNodes.add(startingMaze);    
         GoalNodes = goalMazes;
 
         while(FrontierNodes.size() > 0)
