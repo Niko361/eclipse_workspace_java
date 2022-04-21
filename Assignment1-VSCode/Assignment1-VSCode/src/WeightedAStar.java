@@ -11,12 +11,9 @@ public class WeightedAStar extends SearchMethod
     }
 
 
-    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
+    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
     {
         FrontierNodes.add(startingMaze);
-
-        this.fileName = fileName;
-
         GoalNodes = goalMazes;
 
         while(FrontierNodes.size() > 0)

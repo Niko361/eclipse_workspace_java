@@ -42,16 +42,21 @@ public class Main {
 			System.exit(1);
 		}
 
-		Solution solution = thisMethod.Solve(startingMaze, goalMazes, args[0]);
+		/*Solution solution = thisMethod.Solve(startingMaze, goalMazes);
 
 		if(solution != null)
 		{
-			PrintSolution(fileName, methodName, solution);
+			PrintSolution(fileName, thisMethod.name, solution);
 		}
 		else
 		{
 			System.out.println("No Solution Found.");
 			System.exit(1);
+		}*/
+
+		for (SearchMethod meth: searchMethods)
+		{
+			PrintSolution(fileName, meth.name, meth.Solve(startingMaze, goalMazes));
 		}
 	}
 

@@ -20,10 +20,9 @@ public class BreadthFirstSearch extends SearchMethod
 
 
 
-    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName)
+    public Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes)
     {
-        FrontierNodes.add(startingMaze);
-        this.fileName = fileName;
+        FrontierNodes.add(startingMaze);      
         GoalNodes = goalMazes;
 
         while(FrontierNodes.size() > 0)

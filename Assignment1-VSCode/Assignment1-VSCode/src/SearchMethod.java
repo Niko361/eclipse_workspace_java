@@ -17,7 +17,7 @@ public abstract class SearchMethod
 
     public MazeState currentNode;
 
-    public abstract Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes, String fileName);
+    public abstract Solution Solve(MazeState startingMaze, ArrayList<MazeState> goalMazes);
 
     //used by every search method to check whether the goal state has been reached.
     protected boolean isSolved(MazeState currentMaze)
