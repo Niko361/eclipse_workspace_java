@@ -42,7 +42,7 @@ public class Main {
 			System.exit(1);
 		}
 
-		/*Solution solution = thisMethod.Solve(startingMaze, goalMazes);
+		Solution solution = thisMethod.Solve(startingMaze, goalMazes);
 
 		if(solution != null)
 		{
@@ -52,12 +52,13 @@ public class Main {
 		{
 			System.out.println("No Solution Found.");
 			System.exit(1);
-		}*/
-
+		}
+		/*
+		**This section is only used for testing purposes
 		for (SearchMethod meth: searchMethods)
 		{
 			PrintSolution(fileName, meth.name, meth.Solve(startingMaze, goalMazes));
-		}
+		}*/
 	}
 
 	public static void PrintSolution(String fileName, String methodName, Solution solution)
