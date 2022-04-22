@@ -35,29 +35,6 @@ public class MazeState
 			this.directionList.add(dir);
 		}
 	}
-
-	public void PrintDirections()
-	{
-		for(direction dir: directionList)
-		{
-			switch(dir)
-			{
-				case Up:
-					System.out.print(" up;");
-					break;
-				case Left:
-					System.out.print(" left;");
-					break;
-				case Down:
-					System.out.print(" down;");
-					break;
-				case Right:
-					System.out.print(" right;");
-					break;
-			}
-		}
-		System.out.println();
-	}
 	
 	//adds a wall with top-left corner coordinates and dimensions specified 
 	//need to add bounds checking

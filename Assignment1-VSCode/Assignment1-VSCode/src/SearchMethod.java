@@ -5,8 +5,6 @@ public abstract class SearchMethod
 {
     public String name;
 
-    protected String fileName;
-
     //This list of searched nodes is used to make sure the search method isn't returning to any previously searched states.
     protected ArrayList<MazeState> SearchedNodes;
 
